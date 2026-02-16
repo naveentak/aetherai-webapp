@@ -31,7 +31,7 @@ export const CourseChat: React.FC = () => {
     setLoading(true);
 
     const response = await chatWithAether(messages, userMsg);
-    
+
     setMessages(prev => [...prev, { role: 'model', text: response || "Error connecting." }]);
     setLoading(false);
   };
@@ -41,7 +41,7 @@ export const CourseChat: React.FC = () => {
       {/* Floating Toggle */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-white text-black shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:bg-neutral-200 flex items-center justify-center"
+        className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-btn-primary-bg text-btn-primary-text shadow-glow-soft hover:bg-btn-primary-hover flex items-center justify-center"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
@@ -59,10 +59,10 @@ export const CourseChat: React.FC = () => {
             className="fixed bottom-24 right-6 z-50 w-full max-w-sm rounded-2xl glass-panel shadow-2xl overflow-hidden flex flex-col h-[500px]"
           >
             {/* Header */}
-            <div className="p-4 border-b border-white/10 flex items-center justify-between bg-black/20">
+            <div className="p-4 border-b border-overlay-10 flex items-center justify-between surface-glass-20">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                <span className="font-medium text-sm text-white">Aether Intelligence</span>
+                <span className="font-medium text-sm text-primary">Aether Intelligence</span>
               </div>
             </div>
 
@@ -76,52 +76,52 @@ export const CourseChat: React.FC = () => {
                   className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   {msg.role === 'model' && (
-                    <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                      <Bot size={14} className="text-white" />
+                    <div className="w-8 h-8 rounded-full overlay-10 flex items-center justify-center shrink-0">
+                      <Bot size={14} className="text-primary" />
                     </div>
                   )}
                   <div
                     className={`max-w-[80%] rounded-2xl p-3 text-sm leading-relaxed ${
                       msg.role === 'user'
-                        ? 'bg-white text-black rounded-tr-none'
-                        : 'bg-white/5 text-neutral-300 border border-white/5 rounded-tl-none'
+                        ? 'bg-btn-primary-bg text-btn-primary-text rounded-tr-none'
+                        : 'overlay-5 text-secondary border border-overlay-5 rounded-tl-none'
                     }`}
                   >
                     {msg.text}
                   </div>
                   {msg.role === 'user' && (
-                    <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shrink-0">
-                      <User size={14} className="text-black" />
+                    <div className="w-8 h-8 rounded-full bg-btn-primary-bg flex items-center justify-center shrink-0">
+                      <User size={14} className="text-btn-primary-text" />
                     </div>
                   )}
                 </motion.div>
               ))}
               {loading && (
-                <div className="flex items-center gap-2 text-neutral-500 text-xs ml-11">
-                  <span className="w-1.5 h-1.5 bg-neutral-500 rounded-full animate-bounce" />
-                  <span className="w-1.5 h-1.5 bg-neutral-500 rounded-full animate-bounce delay-75" />
-                  <span className="w-1.5 h-1.5 bg-neutral-500 rounded-full animate-bounce delay-150" />
+                <div className="flex items-center gap-2 text-muted text-xs ml-11">
+                  <span className="w-1.5 h-1.5 bg-muted rounded-full animate-bounce" />
+                  <span className="w-1.5 h-1.5 bg-muted rounded-full animate-bounce delay-75" />
+                  <span className="w-1.5 h-1.5 bg-muted rounded-full animate-bounce delay-150" />
                 </div>
               )}
               <div ref={messagesEndRef} />
             </div>
 
             {/* Input */}
-            <form onSubmit={handleSubmit} className="p-4 border-t border-white/10 bg-black/40">
+            <form onSubmit={handleSubmit} className="p-4 border-t border-overlay-10 surface-glass-40">
               <div className="relative">
                 <input
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask about the course..."
-                  className="w-full bg-white/5 border border-white/10 rounded-full py-3 pl-4 pr-12 text-sm text-white focus:outline-none focus:border-white/30 transition-colors placeholder:text-neutral-600"
+                  className="w-full overlay-5 border border-overlay-10 rounded-full py-3 pl-4 pr-12 text-sm text-primary focus:outline-none focus:border-overlay-30 transition-colors placeholder:text-muted"
                 />
                 <button
                   type="submit"
                   disabled={!input.trim() || loading}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-white/10 hover:bg-white text-black transition-all disabled:opacity-30 disabled:hover:bg-white/10 disabled:cursor-not-allowed"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full overlay-10 hover:bg-btn-primary-bg text-btn-primary-text transition-all disabled:opacity-30 disabled:hover:overlay-10 disabled:cursor-not-allowed"
                 >
-                  <Send size={14} className={input.trim() ? "text-black" : "text-neutral-400"} />
+                  <Send size={14} className={input.trim() ? "text-btn-primary-text" : "text-secondary"} />
                 </button>
               </div>
             </form>

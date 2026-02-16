@@ -36,7 +36,7 @@ export const Audience: React.FC = () => {
           className="mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-display font-semibold mb-4">Who Is This For?</h2>
-          <div className="w-full h-[1px] bg-white/10" />
+          <div className="w-full h-[1px] overlay-10" />
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -47,13 +47,13 @@ export const Audience: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="p-8 rounded-2xl bg-black border border-white/10 hover:border-white/20 transition-colors group"
+              className="p-8 rounded-2xl bg-card-bg border border-overlay-10 hover:border-overlay-20 transition-colors group"
             >
-              <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-5 group-hover:bg-white/15 transition-colors">
-                <span className="text-white">{item.icon}</span>
+              <div className="w-12 h-12 rounded-full overlay-10 flex items-center justify-center mb-5 group-hover:overlay-15 transition-colors">
+                <span className="text-primary">{item.icon}</span>
               </div>
               <h3 className="text-xl font-display font-medium mb-2">{item.title}</h3>
-              <p className="text-neutral-400 text-sm leading-relaxed">{item.description}</p>
+              <p className="text-secondary text-sm leading-relaxed">{item.description}</p>
             </motion.div>
           ))}
         </div>

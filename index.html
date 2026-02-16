@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aether AI | AI Mastery for Financial Services</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- FOUC prevention: apply theme before any render -->
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme');
+        if (theme === 'light' || (!theme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,48 +29,190 @@
               display: ['Space Grotesk', 'sans-serif'],
             },
             colors: {
-              background: '#030303',
-              surface: '#0A0A0A',
-              surfaceHighlight: '#141414',
-              border: '#1F1F1F',
-              primary: '#FFFFFF',
-              secondary: '#A1A1AA',
-              accent: '#3B82F6',
+              background: 'var(--color-background)',
+              surface: 'var(--color-surface)',
+              surfaceHighlight: 'var(--color-surfaceHighlight)',
+              border: 'var(--color-border)',
+              primary: 'var(--color-primary)',
+              secondary: 'var(--color-secondary)',
+              accent: 'var(--color-accent)',
+              muted: 'var(--color-muted)',
+              'card-bg': 'var(--color-card-bg)',
+              'btn-primary-bg': 'var(--color-btn-primary-bg)',
+              'btn-primary-text': 'var(--color-btn-primary-text)',
             },
             backgroundImage: {
               'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-              'grid-white': 'linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px)',
+              'grid-white': 'linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px)',
             }
           }
         }
       }
     </script>
     <style>
+      /* ── Theme Variables (Dark = default) ────────────────────────── */
+      :root {
+        --color-background: #030303;
+        --color-surface: #0A0A0A;
+        --color-surfaceHighlight: #141414;
+        --color-surfaceHighlight-rgb: 20,20,20;
+        --color-border: #1F1F1F;
+
+        --color-primary: #FFFFFF;
+        --color-primary-rgb: 255,255,255;
+        --color-secondary: #A1A1AA;
+        --color-muted: #525252;
+        --color-accent: #3B82F6;
+
+        --color-card-bg: #000000;
+        --color-overlay-rgb: 255,255,255;
+        --color-surface-rgb: 0,0,0;
+
+        --color-glass-bg: rgba(10,10,10,0.6);
+        --color-glass-border: rgba(255,255,255,0.08);
+
+        --color-btn-primary-bg: #FFFFFF;
+        --color-btn-primary-text: #000000;
+        --color-btn-primary-hover: #E5E5E5;
+        --color-glow: rgba(255,255,255,0.3);
+        --color-glow-soft: rgba(255,255,255,0.2);
+
+        --color-btn-secondary-hover-bg: #262626;
+        --color-btn-secondary-hover-border: #525252;
+
+        --grid-line-color: rgba(255,255,255,0.05);
+        --color-scrollbar-thumb: #333;
+        --color-scrollbar-thumb-hover: #555;
+      }
+
+      [data-theme="light"] {
+        --color-background: #FAFAFA;
+        --color-surface: #FFFFFF;
+        --color-surfaceHighlight: #F5F5F5;
+        --color-surfaceHighlight-rgb: 245,245,245;
+        --color-border: #E5E5E5;
+
+        --color-primary: #0A0A0A;
+        --color-primary-rgb: 10,10,10;
+        --color-secondary: #71717A;
+        --color-muted: #A1A1AA;
+        --color-accent: #2563EB;
+
+        --color-card-bg: #FFFFFF;
+        --color-overlay-rgb: 0,0,0;
+        --color-surface-rgb: 255,255,255;
+
+        --color-glass-bg: rgba(255,255,255,0.7);
+        --color-glass-border: rgba(0,0,0,0.08);
+
+        --color-btn-primary-bg: #0A0A0A;
+        --color-btn-primary-text: #FFFFFF;
+        --color-btn-primary-hover: #262626;
+        --color-glow: rgba(0,0,0,0.1);
+        --color-glow-soft: rgba(0,0,0,0.08);
+
+        --color-btn-secondary-hover-bg: #EBEBEB;
+        --color-btn-secondary-hover-border: #A1A1AA;
+
+        --grid-line-color: rgba(0,0,0,0.06);
+        --color-scrollbar-thumb: #CCC;
+        --color-scrollbar-thumb-hover: #AAA;
+      }
+
+      /* ── Base ─────────────────────────────────────────────────────── */
       body {
-        background-color: #030303;
-        color: #ffffff;
+        background-color: var(--color-background);
+        color: var(--color-primary);
         overflow-x: hidden;
       }
-      /* Custom Scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
+
+      ::selection {
+        background-color: rgba(var(--color-overlay-rgb), 0.2);
       }
-      ::-webkit-scrollbar-track {
-        background: #030303; 
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #333; 
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #555; 
-      }
-      
+
+      /* ── Scrollbar ───────────────────────────────────────────────── */
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: var(--color-background); }
+      ::-webkit-scrollbar-thumb { background: var(--color-scrollbar-thumb); border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: var(--color-scrollbar-thumb-hover); }
+
+      /* ── Glass Panel ─────────────────────────────────────────────── */
       .glass-panel {
-        background: rgba(10, 10, 10, 0.6);
+        background: var(--color-glass-bg);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        border: 1px solid var(--color-glass-border);
+      }
+
+      /* ── Overlay Background Utilities ────────────────────────────── */
+      .overlay-3  { background-color: rgba(var(--color-overlay-rgb), 0.03); }
+      .overlay-4  { background-color: rgba(var(--color-overlay-rgb), 0.04); }
+      .overlay-5  { background-color: rgba(var(--color-overlay-rgb), 0.05); }
+      .overlay-6  { background-color: rgba(var(--color-overlay-rgb), 0.06); }
+      .overlay-8  { background-color: rgba(var(--color-overlay-rgb), 0.08); }
+      .overlay-10 { background-color: rgba(var(--color-overlay-rgb), 0.10); }
+      .overlay-15 { background-color: rgba(var(--color-overlay-rgb), 0.15); }
+      .overlay-20 { background-color: rgba(var(--color-overlay-rgb), 0.20); }
+      .overlay-40 { background-color: rgba(var(--color-overlay-rgb), 0.40); }
+
+      /* ── Overlay Border Utilities ────────────────────────────────── */
+      .border-overlay-5  { border-color: rgba(var(--color-overlay-rgb), 0.05); }
+      .border-overlay-8  { border-color: rgba(var(--color-overlay-rgb), 0.08); }
+      .border-overlay-10 { border-color: rgba(var(--color-overlay-rgb), 0.10); }
+      .border-overlay-15 { border-color: rgba(var(--color-overlay-rgb), 0.15); }
+      .border-overlay-20 { border-color: rgba(var(--color-overlay-rgb), 0.20); }
+      .border-overlay-30 { border-color: rgba(var(--color-overlay-rgb), 0.30); }
+      .border-overlay-40 { border-color: rgba(var(--color-overlay-rgb), 0.40); }
+
+      /* ── Hover Overlay Utilities ─────────────────────────────────── */
+      .hover\:overlay-10:hover { background-color: rgba(var(--color-overlay-rgb), 0.10); }
+      .hover\:overlay-15:hover { background-color: rgba(var(--color-overlay-rgb), 0.15); }
+      .hover\:border-overlay-15:hover { border-color: rgba(var(--color-overlay-rgb), 0.15); }
+      .hover\:border-overlay-20:hover { border-color: rgba(var(--color-overlay-rgb), 0.20); }
+      .hover\:border-overlay-40:hover { border-color: rgba(var(--color-overlay-rgb), 0.40); }
+
+      /* ── Focus Overlay Utilities ─────────────────────────────────── */
+      .focus\:border-overlay-30:focus { border-color: rgba(var(--color-overlay-rgb), 0.30); }
+
+      /* ── Group Hover Overlay ─────────────────────────────────────── */
+      .group:hover .group-hover\:overlay-10 { background-color: rgba(var(--color-overlay-rgb), 0.10); }
+      .group:hover .group-hover\:overlay-15 { background-color: rgba(var(--color-overlay-rgb), 0.15); }
+      .group:hover .group-hover\:overlay-20 { background-color: rgba(var(--color-overlay-rgb), 0.20); }
+
+      /* ── Surface Glass (nav/chat semi-transparent bg) ────────────── */
+      .surface-glass-20 { background-color: rgba(var(--color-surface-rgb), 0.2); }
+      .surface-glass-40 { background-color: rgba(var(--color-surface-rgb), 0.4); }
+      .surface-glass-50 { background-color: rgba(var(--color-surface-rgb), 0.5); }
+
+      /* ── SurfaceHighlight with opacity ───────────────────────────── */
+      .bg-surfaceHighlight-30 { background-color: rgba(var(--color-surfaceHighlight-rgb), 0.3); }
+
+      /* ── Button Utilities ────────────────────────────────────────── */
+      .shadow-glow     { box-shadow: 0 0 20px var(--color-glow); }
+      .shadow-glow-soft { box-shadow: 0 0 30px var(--color-glow-soft); }
+      .shadow-glow-sm  { box-shadow: 0 0 20px rgba(var(--color-overlay-rgb), 0.08); }
+      .hover\:bg-btn-primary-hover:hover   { background-color: var(--color-btn-primary-hover); }
+      .hover\:bg-btn-secondary-hover:hover { background-color: var(--color-btn-secondary-hover-bg); }
+      .hover\:border-btn-secondary-hover:hover { border-color: var(--color-btn-secondary-hover-border); }
+
+      /* ── Gradient Text (Hero) ────────────────────────────────────── */
+      .gradient-text-hero {
+        background-image: linear-gradient(to bottom, rgb(var(--color-primary-rgb)), rgba(var(--color-primary-rgb), 0.4));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      /* ── Gradient Overlay (Features hover card) ──────────────────── */
+      .gradient-overlay-up {
+        background-image: linear-gradient(to top, rgba(var(--color-overlay-rgb), 0.05), transparent);
+      }
+
+      /* ── Theme Transition ────────────────────────────────────────── */
+      [data-theme-transitioning] *,
+      [data-theme-transitioning] *::before,
+      [data-theme-transitioning] *::after {
+        transition: background-color 300ms ease, border-color 300ms ease, color 300ms ease, box-shadow 300ms ease, fill 300ms ease, stroke 300ms ease !important;
       }
     </style>
   <script type="importmap">
@@ -74,7 +227,6 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
 </head>
   <body>
     <div id="root"></div>
