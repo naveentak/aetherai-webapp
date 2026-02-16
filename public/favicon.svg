@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="8" fill="#0a0a0f"/>
+  <text x="7" y="22" font-family="'SF Mono', 'Fira Code', monospace" font-weight="bold" font-size="16" fill="#e5e5e5">r</text>
+  <text x="16" y="22" font-family="'SF Mono', 'Fira Code', monospace" font-weight="bold" font-size="16" fill="#3b82f6">:</text>
+</svg>
