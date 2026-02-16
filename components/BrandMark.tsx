@@ -22,9 +22,9 @@ export const BrandMark: React.FC<BrandMarkProps> = ({
 }) => {
   return (
     <span className={`font-display font-bold inline-flex items-baseline ${sizeClasses[size]} ${className}`}>
-      <span className="font-mono font-bold text-white">r</span>
+      <span className="font-mono font-bold text-primary">r</span>
       <span className="font-mono font-bold text-blue-500">:</span>
-      {!compact && <span className="text-white">{suffix}</span>}
+      {!compact && <span className="text-primary">{suffix}</span>}
     </span>
   );
 };

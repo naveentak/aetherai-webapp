@@ -119,14 +119,15 @@ const cardVariants = {
 
 const AetherBackground = () => (
   <div className="absolute inset-0 overflow-hidden pointer-events-none">
-    {/* Aether-style white orbs (not blue) */}
     <motion.div
-      className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-white opacity-[0.03] rounded-full blur-[120px]"
+      className="absolute top-1/4 left-1/4 w-[500px] h-[500px] opacity-[0.03] rounded-full blur-[120px]"
+      style={{ backgroundColor: `rgb(var(--color-overlay-rgb))` }}
       animate={{ scale: [1, 1.08, 1], opacity: [0.03, 0.05, 0.03] }}
       transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
     />
     <motion.div
-      className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-white opacity-[0.02] rounded-full blur-[120px]"
+      className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] opacity-[0.02] rounded-full blur-[120px]"
+      style={{ backgroundColor: `rgb(var(--color-overlay-rgb))` }}
       animate={{ scale: [1, 1.12, 1], opacity: [0.02, 0.04, 0.02] }}
       transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
     />
@@ -182,8 +183,8 @@ const AetherButton: React.FC<{
     disabled={disabled}
     className={`w-full py-4 rounded-full font-medium text-sm flex items-center justify-center gap-3 transition-all duration-300 backdrop-blur-sm ${
       disabled
-        ? 'bg-white/[0.04] text-neutral-600 cursor-not-allowed border border-white/[0.05]'
-        : 'bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:bg-neutral-200 border border-transparent'
+        ? 'overlay-4 text-muted cursor-not-allowed border border-overlay-5'
+        : 'bg-btn-primary-bg text-btn-primary-text shadow-glow hover:bg-btn-primary-hover border border-transparent'
     }`}
     whileHover={disabled ? {} : { scale: 1.02, y: -1 }}
     whileTap={disabled ? {} : { scale: 0.98 }}
@@ -224,21 +225,21 @@ const DetailsScreen: React.FC<{
       <div className="relative z-10 min-h-screen flex flex-col">
         {/* Header */}
         <motion.header className="p-6 flex items-center justify-between" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ ...springTransition, delay: 0.1 }}>
-          <button onClick={onBack} className="flex items-center gap-2 text-neutral-500 hover:text-white transition-colors group">
+          <button onClick={onBack} className="flex items-center gap-2 text-muted hover:text-primary transition-colors group">
             <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
             <span className="font-mono text-xs tracking-wide">r<span className="text-blue-500">:</span>back</span>
           </button>
-          <div className="text-xs text-neutral-500 font-mono">
-            <span className="text-white font-semibold">05</span>
-            <span className="mx-1 text-neutral-600">/</span>
-            <span className="text-neutral-600">05</span>
+          <div className="text-xs text-muted font-mono">
+            <span className="text-primary font-semibold">05</span>
+            <span className="mx-1 text-muted">/</span>
+            <span className="text-muted">05</span>
           </div>
         </motion.header>
 
         {/* Progress */}
         <div className="px-6 max-w-2xl mx-auto w-full">
-          <div className="h-[2px] bg-white/[0.06] rounded-full overflow-hidden">
-            <motion.div className="h-full bg-white/40 rounded-full" initial={{ width: '80%' }} animate={{ width: '100%' }} transition={{ type: 'spring', stiffness: 50, damping: 20 }} />
+          <div className="h-[2px] overlay-6 rounded-full overflow-hidden">
+            <motion.div className="h-full rounded-full" style={{ backgroundColor: `rgba(var(--color-overlay-rgb), 0.4)` }} initial={{ width: '80%' }} animate={{ width: '100%' }} transition={{ type: 'spring', stiffness: 50, damping: 20 }} />
           </div>
         </div>
 
@@ -246,8 +247,8 @@ const DetailsScreen: React.FC<{
         <div className="flex-1 flex items-center justify-center px-6 py-8">
           <motion.div className="max-w-lg w-full" initial={{ opacity: 0, x: 80 }} animate={{ opacity: 1, x: 0 }} transition={springPage}>
             <motion.div className="text-center mb-10" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ ...springTransition, delay: 0.1 }}>
-              <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold mb-4 text-white tracking-tight">Almost there</h1>
-              <p className="text-neutral-400 text-lg">Where should we send your tailored workshop brief?</p>
+              <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold mb-4 text-primary tracking-tight">Almost there</h1>
+              <p className="text-secondary text-lg">Where should we send your tailored workshop brief?</p>
             </motion.div>
 
             <motion.div className="space-y-3" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ ...springTransition, delay: 0.2 }}>
@@ -255,7 +256,7 @@ const DetailsScreen: React.FC<{
                 const Icon = field.icon;
                 return (
                   <div key={field.key} className="relative group">
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-600 group-focus-within:text-neutral-400 transition-colors">
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-muted group-focus-within:text-secondary transition-colors">
                       <Icon size={16} />
                     </div>
                     <input
@@ -263,7 +264,7 @@ const DetailsScreen: React.FC<{
                       placeholder={field.placeholder}
                       value={details[field.key]}
                       onChange={(e) => setDetails(prev => ({ ...prev, [field.key]: e.target.value }))}
-                      className="w-full pl-11 pr-4 py-4 rounded-2xl glass-panel text-white text-sm placeholder:text-neutral-600 focus:outline-none focus:border-white/20 transition-colors"
+                      className="w-full pl-11 pr-4 py-4 rounded-2xl glass-panel text-primary text-sm placeholder:text-muted focus:outline-none focus:border-overlay-20 transition-colors"
                     />
                   </div>
                 );
@@ -317,8 +318,8 @@ const ProcessingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
       <motion.div className="max-w-md w-full relative z-10" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={springTransition}>
         {/* Header */}
         <motion.div className="text-center mb-12" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
-          <span className="font-mono text-xs text-neutral-500 font-medium tracking-wider">r<span className="text-blue-500">:</span>process</span>
-          <h2 className="font-display text-2xl md:text-3xl font-semibold mt-2 text-white tracking-tight">Processing your brief</h2>
+          <span className="font-mono text-xs text-muted font-medium tracking-wider">r<span className="text-blue-500">:</span>process</span>
+          <h2 className="font-display text-2xl md:text-3xl font-semibold mt-2 text-primary tracking-tight">Processing your brief</h2>
         </motion.div>
 
         {/* Stage list */}
@@ -348,14 +349,14 @@ const ProcessingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
                         <AnimatedCheck />
                       </motion.div>
                     ) : isActive ? (
-                      <motion.div key="active" className="w-10 h-10 rounded-xl bg-white/[0.08] text-white flex items-center justify-center"
+                      <motion.div key="active" className="w-10 h-10 rounded-xl overlay-8 text-primary flex items-center justify-center"
                         initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', stiffness: 200, damping: 15 }}>
                         <motion.div animate={{ rotate: 360 }} transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}>
                           <StageIcon size={18} />
                         </motion.div>
                       </motion.div>
                     ) : (
-                      <motion.div key="pending" className="w-10 h-10 rounded-xl bg-white/[0.03] text-neutral-700 flex items-center justify-center">
+                      <motion.div key="pending" className="w-10 h-10 rounded-xl overlay-3 text-muted flex items-center justify-center">
                         <StageIcon size={18} />
                       </motion.div>
                     )}
@@ -365,16 +366,16 @@ const ProcessingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
                 {/* Text */}
                 <div className="flex-1 min-w-0 pt-1">
                   <span className={`font-mono text-[11px] font-semibold tracking-wide transition-colors duration-300 ${
-                    isCompleted ? 'text-emerald-500' : isActive ? 'text-blue-500' : 'text-neutral-700'
+                    isCompleted ? 'text-emerald-500' : isActive ? 'text-blue-500' : 'text-muted'
                   }`}>
                     {stage.command}
                   </span>
-                  <p className={`text-sm font-medium transition-colors duration-300 ${isPending ? 'text-neutral-700' : 'text-white'}`}>
+                  <p className={`text-sm font-medium transition-colors duration-300 ${isPending ? 'text-muted' : 'text-primary'}`}>
                     {stage.label}
                   </p>
                   <AnimatePresence>
                     {isActive && (
-                      <motion.p className="text-xs text-neutral-500 mt-0.5" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.3 }}>
+                      <motion.p className="text-xs text-muted mt-0.5" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.3 }}>
                         {stage.sublabel}
                       </motion.p>
                     )}
@@ -386,10 +387,10 @@ const ProcessingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
         </div>
 
         {/* Progress bar */}
-        <motion.div className="mt-8 h-[2px] bg-white/[0.06] rounded-full overflow-hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
+        <motion.div className="mt-8 h-[2px] overlay-6 rounded-full overflow-hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
           <motion.div
             className="h-full rounded-full transition-colors duration-500"
-            style={{ background: allComplete ? 'rgb(16, 185, 129)' : 'rgba(255,255,255,0.4)' }}
+            style={{ background: allComplete ? 'rgb(16, 185, 129)' : `rgba(var(--color-overlay-rgb), 0.4)` }}
             initial={{ width: '0%' }}
             animate={{ width: allComplete ? '100%' : `${((completedStages.size + (activeStage >= 0 ? 0.5 : 0)) / processingStages.length) * 100}%` }}
             transition={{ type: 'spring', stiffness: 30, damping: 15 }}
@@ -408,7 +409,7 @@ const SuccessScreen: React.FC<{ onBack: () => void }> = ({ onBack }) => (
     <motion.div className="max-w-lg w-full text-center relative z-10" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ type: 'spring', stiffness: 60, damping: 20 }}>
       {/* Success icon with pulse ring */}
       <motion.div
-        className="w-20 h-20 rounded-full bg-white/[0.06] flex items-center justify-center mx-auto mb-8 relative border border-white/[0.08]"
+        className="w-20 h-20 rounded-full overlay-6 flex items-center justify-center mx-auto mb-8 relative border border-overlay-8"
         initial={{ scale: 0, rotate: -20 }}
         animate={{ scale: 1, rotate: 0 }}
         transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.1 }}
@@ -424,26 +425,26 @@ const SuccessScreen: React.FC<{ onBack: () => void }> = ({ onBack }) => (
         />
       </motion.div>
 
-      <motion.span className="font-mono text-xs text-neutral-500 font-medium tracking-wider" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
+      <motion.span className="font-mono text-xs text-muted font-medium tracking-wider" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
         r<span className="text-blue-500">:</span>complete
       </motion.span>
 
-      <motion.h1 className="font-display text-3xl md:text-5xl font-semibold mb-4 mt-3 text-white tracking-tight" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ ...springTransition, delay: 0.35 }}>
+      <motion.h1 className="font-display text-3xl md:text-5xl font-semibold mb-4 mt-3 text-primary tracking-tight" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ ...springTransition, delay: 0.35 }}>
         Briefing received
       </motion.h1>
 
-      <motion.p className="text-neutral-400 text-lg mb-2" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ ...springTransition, delay: 0.45 }}>
+      <motion.p className="text-secondary text-lg mb-2" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ ...springTransition, delay: 0.45 }}>
         Your tailored workshop plan is on its way.
       </motion.p>
 
-      <motion.p className="text-neutral-500 text-sm mb-12 max-w-sm mx-auto" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ ...springTransition, delay: 0.55 }}>
-        We'll analyse your requirements and reach out within <span className="text-white font-medium">24 hours</span> with a customised workshop proposal.
+      <motion.p className="text-muted text-sm mb-12 max-w-sm mx-auto" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ ...springTransition, delay: 0.55 }}>
+        We'll analyse your requirements and reach out within <span className="text-primary font-medium">24 hours</span> with a customised workshop proposal.
       </motion.p>
 
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ ...springTransition, delay: 0.65 }}>
         <motion.button
           onClick={onBack}
-          className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-white text-black text-sm font-medium shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:bg-neutral-200 transition-colors"
+          className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-btn-primary-bg text-btn-primary-text text-sm font-medium shadow-glow hover:bg-btn-primary-hover transition-colors"
           whileHover={{ scale: 1.02, y: -1 }}
           whileTap={{ scale: 0.98 }}
         >
@@ -515,24 +516,25 @@ export const Assessment: React.FC<AssessmentProps> = ({ onBack }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...springTransition, delay: 0.1 }}
         >
-          <button onClick={handleBack} className="flex items-center gap-2 text-neutral-500 hover:text-white transition-colors group">
+          <button onClick={handleBack} className="flex items-center gap-2 text-muted hover:text-primary transition-colors group">
             <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
             <span className="font-mono text-xs tracking-wide">
               r<span className="text-blue-500">:</span>{currentStep === 0 ? 'home' : 'back'}
             </span>
           </button>
-          <div className="text-xs text-neutral-600 font-mono">
-            <span className="text-white font-semibold">{String(currentStep + 1).padStart(2, '0')}</span>
+          <div className="text-xs text-muted font-mono">
+            <span className="text-primary font-semibold">{String(currentStep + 1).padStart(2, '0')}</span>
             <span className="mx-1">/</span>
             <span>{String(totalSteps).padStart(2, '0')}</span>
           </div>
         </motion.header>
 
-        {/* Progress bar — white track, white fill (Aether soul) */}
+        {/* Progress bar */}
         <div className="px-6 max-w-2xl mx-auto w-full">
-          <div className="h-[2px] bg-white/[0.06] rounded-full overflow-hidden">
+          <div className="h-[2px] overlay-6 rounded-full overflow-hidden">
             <motion.div
-              className="h-full bg-white/40 rounded-full"
+              className="h-full rounded-full"
+              style={{ backgroundColor: `rgba(var(--color-overlay-rgb), 0.4)` }}
               initial={{ width: 0 }}
               animate={{ width: `${progress}%` }}
               transition={{ type: 'spring', stiffness: 50, damping: 20 }}
@@ -555,13 +557,13 @@ export const Assessment: React.FC<AssessmentProps> = ({ onBack }) => {
             >
               {/* Question heading */}
               <motion.div className="text-center mb-10" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ ...springTransition, delay: 0.1 }}>
-                <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold mb-4 text-white tracking-tight">
+                <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold mb-4 text-primary tracking-tight">
                   {currentQuestion.question}
                 </h1>
-                <p className="text-neutral-400 text-lg">{currentQuestion.subtitle}</p>
+                <p className="text-secondary text-lg">{currentQuestion.subtitle}</p>
               </motion.div>
 
-              {/* Option cards — glass-panel aesthetic, white-based selection */}
+              {/* Option cards */}
               <motion.div className="grid grid-cols-1 sm:grid-cols-2 gap-4" variants={cardContainerVariants} initial="hidden" animate="visible">
                 {currentQuestion.options.map((option) => {
                   const isSelected = answers[currentQuestion.id] === option.value;
@@ -576,30 +578,30 @@ export const Assessment: React.FC<AssessmentProps> = ({ onBack }) => {
                       onClick={() => handleSelect(currentQuestion.id, option.value)}
                       className={`group relative p-6 rounded-3xl border text-left transition-all duration-300 backdrop-blur-xl ${
                         isSelected
-                          ? 'bg-white/[0.06] border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.08)]'
-                          : 'bg-[rgba(10,10,10,0.6)] border-white/[0.08] hover:border-white/[0.15]'
+                          ? 'overlay-6 border-overlay-20 shadow-glow-sm'
+                          : 'glass-panel hover:border-overlay-15'
                       }`}
                     >
                       <div className="flex items-start gap-4">
-                        {/* Icon — inverts on select (Aether style) */}
+                        {/* Icon */}
                         <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                           isSelected
-                            ? 'bg-white text-black'
-                            : 'bg-white/[0.06] text-neutral-500 group-hover:text-white group-hover:bg-white/[0.1]'
+                            ? 'bg-btn-primary-bg text-btn-primary-text'
+                            : 'overlay-6 text-muted group-hover:text-primary group-hover:overlay-10'
                         }`}>
                           <IconComponent size={22} />
                         </div>
                         <div className="flex-1 min-w-0">
                           <span className={`font-medium text-sm block mb-1 transition-colors duration-300 ${
-                            isSelected ? 'text-white' : 'text-neutral-300 group-hover:text-white'
+                            isSelected ? 'text-primary' : 'text-secondary group-hover:text-primary'
                           }`}>
                             {option.label}
                           </span>
-                          <span className="text-xs text-neutral-500 leading-relaxed block">
+                          <span className="text-xs text-muted leading-relaxed block">
                             {option.description}
                           </span>
                         </div>
-                        {/* Check — white circle, black check (Aether inversion) */}
+                        {/* Check */}
                         <AnimatePresence>
                           {isSelected && (
                             <motion.div
@@ -607,9 +609,9 @@ export const Assessment: React.FC<AssessmentProps> = ({ onBack }) => {
                               animate={{ scale: 1 }}
                               exit={{ scale: 0 }}
                               transition={springSnappy}
-                              className="w-6 h-6 rounded-full bg-white flex items-center justify-center flex-shrink-0"
+                              className="w-6 h-6 rounded-full bg-btn-primary-bg flex items-center justify-center flex-shrink-0"
                             >
-                              <Check size={14} className="text-black" />
+                              <Check size={14} className="text-btn-primary-text" />
                             </motion.div>
                           )}
                         </AnimatePresence>
@@ -619,7 +621,7 @@ export const Assessment: React.FC<AssessmentProps> = ({ onBack }) => {
                 })}
               </motion.div>
 
-              {/* Continue button — Aether rounded-full with glow */}
+              {/* Continue button */}
               <motion.div className="mt-8" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ ...springTransition, delay: 0.4 }}>
                 <AetherButton onClick={handleNext} disabled={!answers[currentQuestion.id]}>
                   Continue <ArrowRight size={16} />

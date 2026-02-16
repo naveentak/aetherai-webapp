@@ -84,8 +84,8 @@ export const Curriculum: React.FC = () => {
        <div className="max-w-5xl mx-auto">
         <div className="mb-20">
           <h2 className="text-3xl md:text-5xl font-display font-semibold mb-4">Your 2-Day Journey</h2>
-          <p className="text-neutral-400 text-lg mb-6">10 sessions across 2 intensive days — from AI foundations to production solutions.</p>
-          <div className="w-full h-[1px] bg-white/10" />
+          <p className="text-secondary text-lg mb-6">10 sessions across 2 intensive days — from AI foundations to production solutions.</p>
+          <div className="w-full h-[1px] overlay-10" />
         </div>
 
         <div className="space-y-4">
@@ -93,15 +93,15 @@ export const Curriculum: React.FC = () => {
             <div key={item.id} className="group">
               <button
                 onClick={() => setOpenId(openId === item.id ? null : item.id)}
-                className={`w-full text-left py-8 border-b border-white/5 transition-all duration-300 ${
+                className={`w-full text-left py-8 border-b border-overlay-5 transition-all duration-300 ${
                   openId === item.id ? 'opacity-100' : 'opacity-60 hover:opacity-100'
                 }`}
               >
                 <div className="flex items-start justify-between">
                   <div className="flex gap-8 md:gap-16">
-                    <span className="font-mono text-sm text-neutral-500 pt-1">{item.id}</span>
+                    <span className="font-mono text-sm text-muted pt-1">{item.id}</span>
                     <div>
-                      <span className="block text-xs font-mono text-neutral-500 mb-2 uppercase tracking-wider">{item.week}</span>
+                      <span className="block text-xs font-mono text-muted mb-2 uppercase tracking-wider">{item.week}</span>
                       <h3 className="text-2xl md:text-3xl font-medium">{item.title}</h3>
                     </div>
                   </div>
@@ -109,7 +109,7 @@ export const Curriculum: React.FC = () => {
                     animate={{ rotate: openId === item.id ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <ChevronDown className="text-neutral-500" />
+                    <ChevronDown className="text-muted" />
                   </motion.div>
                 </div>
               </button>
@@ -124,14 +124,14 @@ export const Curriculum: React.FC = () => {
                     className="overflow-hidden"
                   >
                     <div className="pl-[calc(2rem+32px)] md:pl-[calc(4rem+32px)] pr-4 py-6">
-                      <p className="text-neutral-400 text-lg leading-relaxed mb-8 max-w-2xl">
+                      <p className="text-secondary text-lg leading-relaxed mb-8 max-w-2xl">
                         {item.description}
                       </p>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {item.topics.map((topic, idx) => (
-                          <div key={idx} className="flex items-center gap-2 p-3 rounded-lg bg-white/5 border border-white/5">
-                            <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
-                            <span className="text-sm text-neutral-300">{topic}</span>
+                          <div key={idx} className="flex items-center gap-2 p-3 rounded-lg overlay-5 border border-overlay-5">
+                            <div className="w-1.5 h-1.5 rounded-full overlay-20" />
+                            <span className="text-sm text-secondary">{topic}</span>
                           </div>
                         ))}
                       </div>
