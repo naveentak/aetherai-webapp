@@ -162,7 +162,7 @@ export const Curriculum: React.FC = () => {
   };
 
   return (
-    <section id="curriculum" className="py-32 px-6 relative">
+    <section id="curriculum" className="py-20 sm:py-32 px-4 sm:px-6 relative">
       <div className="max-w-5xl mx-auto">
         <div className="mb-20">
           <h2 className="text-3xl md:text-5xl font-display font-semibold mb-4">Your 2-Day Journey</h2>

@@ -120,13 +120,13 @@ const cardVariants = {
 const AetherBackground = () => (
   <div className="absolute inset-0 overflow-hidden pointer-events-none">
     <motion.div
-      className="absolute top-1/4 left-1/4 w-[500px] h-[500px] opacity-[0.03] rounded-full blur-[120px]"
+      className="absolute top-1/4 left-1/4 w-[80vw] max-w-[500px] h-[80vw] max-h-[500px] opacity-[0.03] rounded-full blur-[120px]"
       style={{ backgroundColor: `rgb(var(--color-overlay-rgb))` }}
       animate={{ scale: [1, 1.08, 1], opacity: [0.03, 0.05, 0.03] }}
       transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
     />
     <motion.div
-      className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] opacity-[0.02] rounded-full blur-[120px]"
+      className="absolute bottom-1/4 right-1/4 w-[70vw] max-w-[400px] h-[70vw] max-h-[400px] opacity-[0.02] rounded-full blur-[120px]"
       style={{ backgroundColor: `rgb(var(--color-overlay-rgb))` }}
       animate={{ scale: [1, 1.12, 1], opacity: [0.02, 0.04, 0.02] }}
       transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 3 }}

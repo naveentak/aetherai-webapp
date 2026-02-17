@@ -20,7 +20,7 @@ function App() {
     <div className="bg-background min-h-screen text-primary">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-40 border-b border-overlay-5 surface-glass-50 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <BrandMark suffix="labs" size="lg" />
             <span className="text-[10px] font-mono text-muted uppercase tracking-wider hidden sm:block">| Aether AI</span>
@@ -46,7 +46,7 @@ function App() {
         <Curriculum />
 
         {/* Call to Action */}
-        <section className="py-32 px-6 text-center border-t border-overlay-5">
+        <section className="py-20 sm:py-32 px-4 sm:px-6 text-center border-t border-overlay-5">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl md:text-6xl font-display font-semibold mb-8">
               Ready to Transform<br />Your Team?
@@ -65,7 +65,7 @@ function App() {
         </section>
 
         {/* Footer */}
-        <footer className="py-12 px-6 border-t border-overlay-5 bg-card-bg">
+        <footer className="py-12 px-4 sm:px-6 border-t border-overlay-5 bg-card-bg">
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-2 text-muted text-sm">
               <span>An</span>

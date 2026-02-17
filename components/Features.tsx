@@ -4,7 +4,7 @@ import { Building2, Code2, Shield, FlaskConical } from 'lucide-react';
 
 export const Features: React.FC = () => {
   return (
-    <section id="features" className="py-24 px-6 bg-surfaceHighlight-30 border-y border-overlay-5">
+    <section id="features" className="py-16 sm:py-24 px-4 sm:px-6 bg-surfaceHighlight-30 border-y border-overlay-5">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -24,7 +24,7 @@ export const Features: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="md:col-span-2 p-8 rounded-3xl bg-card-bg border border-overlay-10 relative overflow-hidden group"
+            className="md:col-span-2 p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-card-bg border border-overlay-10 relative overflow-hidden group"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 blur-[80px] rounded-full group-hover:bg-blue-500/20 transition-all duration-500" />
             <div className="relative z-10">
@@ -44,7 +44,7 @@ export const Features: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="row-span-2 p-8 rounded-3xl bg-card-bg border border-overlay-10 relative overflow-hidden group"
+            className="row-span-2 p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-card-bg border border-overlay-10 relative overflow-hidden group"
           >
              <div className="absolute bottom-0 left-0 w-full h-1/2 gradient-overlay-up opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <div className="relative z-10 h-full flex flex-col justify-between">
@@ -73,7 +73,7 @@ export const Features: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="p-8 rounded-3xl bg-card-bg border border-overlay-10 group hover:border-overlay-20 transition-colors"
+            className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-card-bg border border-overlay-10 group hover:border-overlay-20 transition-colors"
           >
              <div className="w-12 h-12 rounded-full overlay-10 flex items-center justify-center mb-6">
                 <Code2 className="text-primary" size={24} />
@@ -90,7 +90,7 @@ export const Features: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="p-8 rounded-3xl bg-card-bg border border-overlay-10 group hover:border-overlay-20 transition-colors"
+            className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-card-bg border border-overlay-10 group hover:border-overlay-20 transition-colors"
           >
              <div className="w-12 h-12 rounded-full overlay-10 flex items-center justify-center mb-6">
                 <FlaskConical className="text-primary" size={24} />

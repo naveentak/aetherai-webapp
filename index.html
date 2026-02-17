@@ -120,10 +120,12 @@
       }
 
       /* ── Base ─────────────────────────────────────────────────────── */
+      html, body, #root {
+        overflow-x: clip;
+      }
       body {
         background-color: var(--color-background);
         color: var(--color-primary);
-        overflow-x: hidden;
       }
 
       ::selection {
