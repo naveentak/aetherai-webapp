@@ -3,6 +3,7 @@ import { Hero } from './components/Hero';
 import { Curriculum } from './components/Curriculum';
 import { Features } from './components/Features';
 import { Audience } from './components/Audience';
+import { AIToolsGrid } from './components/AIToolsGrid';
 import { CourseChat } from './components/CourseChat';
 import { Assessment } from './components/Assessment';
 import { Button } from './components/ui/Button';
@@ -26,9 +27,10 @@ function App() {
             <span className="text-[10px] font-mono text-muted uppercase tracking-wider hidden sm:block">| Aether AI</span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-secondary">
-            <a href="#curriculum" className="hover:text-primary transition-colors">Sessions</a>
-            <a href="#audience" className="hover:text-primary transition-colors">Who It's For</a>
             <a href="#features" className="hover:text-primary transition-colors">Why This Course</a>
+            <a href="#tools" className="hover:text-primary transition-colors">Tools</a>
+            <a href="#audience" className="hover:text-primary transition-colors">Who It's For</a>
+            <a href="#curriculum" className="hover:text-primary transition-colors">Sessions</a>
           </div>
           <div className="flex items-center gap-4">
             <ThemeToggle />
@@ -42,6 +44,7 @@ function App() {
       <main>
         <Hero onStartAssessment={() => setShowAssessment(true)} />
         <Features />
+        <AIToolsGrid />
         <Audience />
         <Curriculum />
 
