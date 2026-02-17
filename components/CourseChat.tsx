@@ -41,7 +41,7 @@ export const CourseChat: React.FC = () => {
       {/* Floating Toggle */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-btn-primary-bg text-btn-primary-text shadow-glow-soft hover:bg-btn-primary-hover flex items-center justify-center"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 p-4 rounded-full bg-btn-primary-bg text-btn-primary-text shadow-glow-soft hover:bg-btn-primary-hover flex items-center justify-center"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
@@ -56,7 +56,7 @@ export const CourseChat: React.FC = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed bottom-24 right-6 z-50 w-full max-w-sm rounded-2xl glass-panel shadow-2xl overflow-hidden flex flex-col h-[500px]"
+            className="fixed bottom-24 right-4 left-4 sm:left-auto sm:right-6 z-50 sm:w-full max-w-sm rounded-2xl glass-panel shadow-2xl overflow-hidden flex flex-col h-[70vh] sm:h-[500px]"
           >
             {/* Header */}
             <div className="p-4 border-b border-overlay-10 flex items-center justify-between surface-glass-20">

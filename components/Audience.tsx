@@ -27,7 +27,7 @@ const audienceData = [
 
 export const Audience: React.FC = () => {
   return (
-    <section id="audience" className="py-24 px-6">
+    <section id="audience" className="py-16 sm:py-24 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -47,7 +47,7 @@ export const Audience: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="p-8 rounded-2xl bg-card-bg border border-overlay-10 hover:border-overlay-20 transition-colors group"
+              className="p-5 sm:p-8 rounded-2xl bg-card-bg border border-overlay-10 hover:border-overlay-20 transition-colors group"
             >
               <div className="w-12 h-12 rounded-full overlay-10 flex items-center justify-center mb-5 group-hover:overlay-15 transition-colors">
                 <span className="text-primary">{item.icon}</span>

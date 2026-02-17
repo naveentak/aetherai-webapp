@@ -9,11 +9,11 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onStartAssessment }) => {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden pt-20">
+    <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 overflow-hidden pt-20">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-grid-white bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_70%)] opacity-20" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-[0.03] blur-[120px] rounded-full" style={{ backgroundColor: `rgb(var(--color-overlay-rgb))` }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] max-w-[600px] h-[80vw] max-h-[600px] opacity-[0.03] blur-[120px] rounded-full" style={{ backgroundColor: `rgb(var(--color-overlay-rgb))` }} />
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
